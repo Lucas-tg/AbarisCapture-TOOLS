@@ -10,13 +10,13 @@
 // ==/UserScript==
 
 (function () {
-  'use strict'
+  ;('use strict')
 
   document.addEventListener('keydown', keyDownHandler)
 
   function keyDownHandler(event) {
     // Only work on this page
-    if (window.location.href === 'https://unifaj.....') return
+    if (window.location.href === 'https://unifaj...../*') return
 
     // Press ' key
     if (event.key === "'") {
@@ -29,30 +29,31 @@
       // Click on Save Button
       saveButton()
 
-      // wait page load
-      window.addEventListener('load', function () {
-        // Click on Left Arrow
-        leftArrowButton()
+      // Click on Left Arrow
+      leftArrowButton()
 
-        // Scroll to 'Disciplina'
-        scrollSubject()
+      // Scroll to 'Disciplina'
+      scrollSubject()
 
-        // Select all or click on 'Disciplina'
-        selectSubject()
-      })
+      // Select all or click on 'Disciplina'
+      selectSubject()
     }
   }
 
   // TODO: test with getElementsByClassName
   // TODO: check Tags
 
+  // https://javascript.plainenglish.io/how-to-check-if-an-element-exists-in-the-visible-dom-with-javascript-523692554402
+  // https://stackoverflow.com/questions/5629684/how-can-i-check-if-an-element-exists-in-the-visible-dom
+
   // Delete Crop Panel
   function deleteCropSectionPanel() {
     var cropSelectionID = window.document.getElementById('cropSectionPanel')
 
     // Verify if cropSectionPanel exists
-    if (cropSelectionID.length > 0) {
-      cropSelectionID.parentNode.removeChild(id)
+    // return true or false, true = exists; false = dont exists in visible DOM
+    if (cropSelectionID) {
+      cropSelectionID.parentNode.removeChild(cropSelectionID)
     }
   }
 
@@ -66,16 +67,16 @@
 
     // if checkBox = checked(true) return (dont click)
 
-    if (id.length > 0) {
+    if (id) {
       unCheckedId.click()
     }
   }
-  //var test = window.document.getElementsByClassName('sc-fujyUd kLUdOL')
+
   // Click on Save Button
   function saveButton() {
     var saveBT = window.document.getElementById('saveIndex')
 
-    if (saveBT.length > 0) {
+    if (saveBT) {
       saveBT.click()
     }
   }
@@ -83,10 +84,12 @@
   // Click on Left Arrow
   function leftArrowButton() {
     var leftArrowBT = window.getElementById('getElementsByClassName')
+    var loadID = window.getElementById('')
+
     // get document number
     // if document number > 1 then click left arrow
 
-    if (leftArrowBT > 0) {
+    if (leftArrowBT && !loadID) {
       leftArrowBT.click()
     }
   }
@@ -101,11 +104,15 @@ element.scrollIntoView({block: "end"});
 element.scrollIntoView({block: "end", behavior: "smooth"})
  * 
  */
+
   // Scroll to 'Disciplina'
   function scrollSubject() {
     var element = document.getElementById('input-28')
+    var loadID2 = document.getElementById('')
 
-    element.scrollIntoView()
+    if (element && !loadID2) {
+      element.scrollIntoView()
+    }
   }
 
   // Select all or click on 'Disciplina'
@@ -113,7 +120,10 @@ element.scrollIntoView({block: "end", behavior: "smooth"})
     // id = 'input-28'
 
     var element = document.getElementById('input-28')
+    var loadID3 = document.getElementById('')
 
-    element.click()
+    if (element && !loadID3) {
+      element.click()
+    }
   }
 })()
