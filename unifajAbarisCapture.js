@@ -3,14 +3,14 @@
 // @namespace   https://github.com/Lucas-tg/AbarisCapture-TOOLS
 // @match       https://www.unifaj..../*
 // @grant       none
-// @version     1.0.0
+// @version     1.0.1
 // @author      Lucas Torres Gontijo
 // @description Unifaj Abaris Capture Utils
 // @license     MIT
 // ==/UserScript==
 
 (function () {
-  ;('use strict')
+  'use strict'
 
   document.addEventListener('keydown', keyDownHandler)
 
@@ -29,14 +29,31 @@
       // Click on Save Button
       saveButton()
 
-      // Click on Left Arrow
-      leftArrowButton()
+      // https://thewebdev.info/2021/04/11/how-to-make-a-javascript-function-wait-until-an-element-exists-before-running-it/
+      const mutationObserver = new MutationObserver((mutations, obs) => {
+        const overlay = document.getElementById('')
+        if(!overlay){
+      
 
-      // Scroll to 'Disciplina'
-      scrollSubject()
+        // Click on Left Arrow
+        leftArrowButton()
 
-      // Select all or click on 'Disciplina'
-      selectSubject()
+        // Scroll to 'Disciplina'
+        scrollSubject()
+
+        // Select all or click on 'Disciplina'
+        selectSubject()
+
+        obs.disconnect()
+        return
+
+        }
+      })
+
+      mutationObserver.observe(document, {
+        chieldList: true,
+        subtree: true
+      })
     }
   }
 
@@ -84,12 +101,12 @@
   // Click on Left Arrow
   function leftArrowButton() {
     var leftArrowBT = window.getElementById('getElementsByClassName')
-    var loadID = window.getElementById('')
+    //var loadID = window.getElementById('')
 
     // get document number
     // if document number > 1 then click left arrow
-
-    if (leftArrowBT && !loadID) {
+    // && !loadID
+    if (leftArrowBT) {
       leftArrowBT.click()
     }
   }
